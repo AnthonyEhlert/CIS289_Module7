@@ -35,11 +35,15 @@ if __name__ == '__main__':
     database = 'weather_tracking.db'
     conn = creat_connection(database)
     cur = conn.cursor()
+
+    # delete any existing records from tables in database to enable multiple runs of code w/out adding dup records
+    cur.execute("DELETE FROM Precipitation")
+    cur.execute("DELETE FROM Location")
+    conn.commit()
+
     #### Gather weather data from at least two different counties for a range of 30 days
 
-    #### Import this data into your program
-
-    #### Write this data to your database tables in the Location and Precipitation tables
+    #### Import & Write this data to your database tables in the Location and Precipitation tables
     with open('weather_data.csv', 'r') as input_file:
         data = csv.DictReader(input_file)
         to_db = [(i['county'], i['date'], i['precipitation'], i['precip_type']) for i in data]
