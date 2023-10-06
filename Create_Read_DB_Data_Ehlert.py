@@ -51,30 +51,12 @@ if __name__ == '__main__':
         # create a list of tuples (ea. tuple is a record) from contents of data variable
         to_db_precip = [(i['county'], i['date'], i['precipitation'], i['precip_type']) for i in data]
 
-        ### Alternate method for creating list of tuples representing records read from .csv
-        #to_db = [(i['county'], i['date'], i['precipitation'], i['precip_type']) for i in data]
-        ## create list of values from first column of table with length == # of tuples in to_db variable
-        #to_db_precip = [item[0] for item in to_db]
-        ## for loop cycles through for each tuple/record in to_db variable
-        #for x in range(0, len(to_db)):
-            #to_db_precip[x] = tuple([to_db_precip[x], to_db[x][1], to_db[x][2], to_db[x][3]])
-    #print(to_db_precip)
-
     with open('weather_data.csv', 'r') as input_file:
         # create data variable to hold contents of .csv file
         data = csv.DictReader(input_file)
 
         # create a list of tuples (ea. tuple is a record) from data variable containing records read from .csv
         to_db_loc = [(i['county'], i['state']) for i in data]
-
-        ### Alternate method for creating list of tuples representing records read from .csv
-        #to_db = [(i['county'], i['state']) for i in data]
-        ## create list of values from first column of table with length == # of tuples in to_db variable
-        #to_db_loc = [item[0] for item in to_db]
-        ## for loop cycles through for each record in to_db variable amd creates tuple representing record
-        #for x in range(0, len(to_db)):
-        #     to_db_loc[x] = tuple([to_db_loc[x], to_db[x][1]])
-    # print(to_db_loc)
 
     cur.executemany("REPLACE INTO Location (county, state) VALUES (?,?)", to_db_loc)
     cur.executemany("REPLACE INTO Precipitation (county, date, precipitation, precip_type) VALUES (?,?,?,?)",
