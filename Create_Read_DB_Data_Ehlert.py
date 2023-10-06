@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sqlite3 import Error
 
-
 def creat_connection(db_file):
     """
     This function creates a database connection to a SQLite database that is specified by the param
