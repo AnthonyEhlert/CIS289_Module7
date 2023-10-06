@@ -69,7 +69,6 @@ if __name__ == '__main__':
     # print(precip_df.to_string())
 
     precip_df['date'] = pd.to_datetime(precip_df['date'])
-    precip_df['date'] = precip_df['date'].convert_dtypes()
     # print(precip_df['date'].dtype)
 
     data_wayne_co = precip_df[precip_df['county'] == 'Wayne']
