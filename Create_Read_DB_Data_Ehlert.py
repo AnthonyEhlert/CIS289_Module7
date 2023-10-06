@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sqlite3 import Error
 
-def creat_connection(db_file):
+def create_connection(db_file):
     """
     This function creates a database connection to a SQLite database that is specified by the param
     :param db_file: database file
@@ -32,7 +32,7 @@ def creat_connection(db_file):
 
 if __name__ == '__main__':
     database = 'weather_tracking.db'
-    conn = creat_connection(database)
+    conn = create_connection(database)
     cur = conn.cursor()
 
     # delete any existing records from tables in database to enable multiple runs of code w/out adding dup records
